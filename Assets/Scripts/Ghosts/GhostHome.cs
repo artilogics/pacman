@@ -29,6 +29,14 @@ public class GhostHome : GhostBehavior
 
     private IEnumerator ExitTransition()
     {
+        // Donem temps (un frame) perquè el GameManager s'inicialitzi
+        yield return null;
+
+        // Esperar mentre duri l'intro global o el moviment estigui deshabilitat
+        while (GameManager.Instance.IsStartupSequence || !ghost.movement.enabled) {
+            yield return null;
+        }
+
         // Desactivar el moviment físic mentre s'anima manualment
         ghost.movement.SetDirection(Vector2.up, true);
         ghost.movement.rb.bodyType = RigidbodyType2D.Kinematic;

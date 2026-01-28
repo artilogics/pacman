@@ -10,7 +10,7 @@ public class Pacman : MonoBehaviour
     private AnimatedSprite deathSequence;
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D circleCollider;
-    private Movement movement;
+    public Movement movement { get; private set; }
 
     private void Awake()
     {

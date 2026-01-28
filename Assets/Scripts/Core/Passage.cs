@@ -9,7 +9,14 @@ public class Passage : MonoBehaviour
     {
         Vector3 position = connection.position;
         position.z = other.transform.position.z;
-        other.transform.position = position;
+
+        Movement movement = other.GetComponent<Movement>();
+        if (movement != null) {
+            movement.Teleport(position);
+        } else {
+            // Per objectes sense script de moviment, fer teleport simple
+            other.transform.position = position;
+        }
     }
 
 }

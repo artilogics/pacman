@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     public Vector2 nextDirection { get; private set; }
     public Vector3 startingPosition { get; private set; }
 
+    private float lastTeleportTime; // Cooldown per evitar teleportació infinita
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +54,16 @@ public class Movement : MonoBehaviour
         Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
 
         rb.MovePosition(position + translation);
+    }
+
+    public void Teleport(Vector3 position)
+    {
+        // Evitar teleportar-se si ja ho has fet fa menys de 0.5 segons
+        if (Time.time - lastTeleportTime < 0.5f) return;
+
+        lastTeleportTime = Time.time;
+        rb.MovePosition(position);
+        transform.position = position;
     }
 
     public void SetDirection(Vector2 direction, bool forced = false)
