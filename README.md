@@ -1,8 +1,22 @@
-# Pac-man (2D)
+# Projecte Educatiu Pacman ᗧ
 
-> Pac-Man is a maze action game developed and released by Namco for arcades in 1980. The player controls Pac-Man, who must eat all the dots inside an enclosed maze while avoiding four colored ghosts. Eating large flashing dots called "Power Pellets" causes the ghosts to turn blue, allowing Pac-Man to eat them for bonus points.
+**Aquest és un projecte de Unity pensat com a plantilla inicial educativa, per artistes, fàcilment configurable.**
 
-- **Topics**: AI, Tilemaps, Sprites
-- **Version**: Unity 2021.3 (LTS)
-- [**Download**](https://github.com/zigurous/unity-pacman-tutorial/archive/refs/heads/main.zip)
-- [**Watch Video**](https://youtu.be/TKt_VlMn_aA)
+**Creada per ARTILOGICS Game Studio en col·laboració amb l'Escola CIFOG.**
+
+## 🎯 Objectiu
+L'objectiu d'aquesta plantilla és servir de base per a l'aprenentatge de desenvolupament de videojocs 2D en Unity, permetent als alumnes i artistes centrar-se en la creació d'assets, disseny de nivells i modificació de paràmetres sense haver de començar la programació des de zero.
+
+## 📂 Estructura del Projecte
+El projecte s'ha organitzat per facilitar la navegació:
+
+- **Assets/Scripts/Core**: Scripts de gestió central com `GameManager`.
+- **Assets/Scripts/Player**: Control del personatge principal (`Pacman`).
+- **Assets/Scripts/Ghosts**: Lògica dels enemics fantasma.
+- **Assets/Scripts/Items**: Objectes recollibles com els punts (pellets).
+
+## 🛠 Configuració
+Els scripts estan comentats en català i dissenyats per ser intuïtius. Podeu modificar paràmetres com la velocitat, puntuació i comportaments directament des de l'Inspector de Unity.
+
+---
+*Gaudiu creant!*

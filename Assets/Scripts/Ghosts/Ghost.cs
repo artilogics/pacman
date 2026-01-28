@@ -2,6 +2,9 @@ using UnityEngine;
 
 [DefaultExecutionOrder(-10)]
 [RequireComponent(typeof(Movement))]
+/// <summary>
+/// Classe base per als fantasmes. Gestiona els diferents comportaments (perseguir, dispersar-se, espantar-se) i les col·lisions.
+/// </summary>
 public class Ghost : MonoBehaviour
 {
     public Movement movement { get; private set; }
@@ -27,6 +30,9 @@ public class Ghost : MonoBehaviour
         ResetState();
     }
 
+    /// <summary>
+    /// Restableix l'estat inicial del fantasma i els seus comportaments.
+    /// </summary>
     public void ResetState()
     {
         gameObject.SetActive(true);
@@ -47,13 +53,14 @@ public class Ghost : MonoBehaviour
 
     public void SetPosition(Vector3 position)
     {
-        // Keep the z-position the same since it determines draw depth
+        // Mantenir la posició Z igual ja que determina la profunditat de dibuix
         position.z = transform.position.z;
         transform.position = position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Gestionar col·lisió amb el Pacman
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
         {
             if (frightened.enabled) {

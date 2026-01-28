@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+/// <summary>
+/// Gestiona el moviment físic d'objectes (Pacman i fantasmes).
+/// </summary>
 public class Movement : MonoBehaviour
 {
     public float speed = 8f;
@@ -30,14 +33,14 @@ public class Movement : MonoBehaviour
         direction = initialDirection;
         nextDirection = Vector2.zero;
         transform.position = startingPosition;
-        rb.isKinematic = false;
+        // isKinematic està obsolet. Fem servir bodyType per controlar si reacciona a físiques o no.
+        rb.bodyType = RigidbodyType2D.Dynamic;
         enabled = true;
     }
 
     private void Update()
     {
-        // Try to move in the next direction while it's queued to make movements
-        // more responsive
+        // Intenta moure's en la següent direcció si està en cua, per millorar la resposta
         if (nextDirection != Vector2.zero) {
             SetDirection(nextDirection);
         }
@@ -53,9 +56,8 @@ public class Movement : MonoBehaviour
 
     public void SetDirection(Vector2 direction, bool forced = false)
     {
-        // Only set the direction if the tile in that direction is available
-        // otherwise we set it as the next direction so it'll automatically be
-        // set when it does become available
+        // Només canvia de direcció si no hi ha obstacles, o si estem forçant el moviment.
+        // Si està ocupat, guarda la intenció (nextDirection) per quan sigui possible.
         if (forced || !Occupied(direction))
         {
             this.direction = direction;
@@ -69,7 +71,7 @@ public class Movement : MonoBehaviour
 
     public bool Occupied(Vector2 direction)
     {
-        // If no collider is hit then there is no obstacle in that direction
+        // Llança un raig (BoxCast) per veure si xoquem amb paret (obstacleLayer)
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0f, direction, 1.5f, obstacleLayer);
         return hit.collider != null;
     }
