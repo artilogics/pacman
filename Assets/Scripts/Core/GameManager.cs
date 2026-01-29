@@ -43,10 +43,10 @@ public class GameManager : MonoBehaviour
 
         // Auto-assignació de referències per robustesa/educatiu
         // Sobreescrivim sempre per assegurar que NO ens deixem cap fantasma i els ordenem per la jerarquia
-        ghosts = FindObjectsOfType<Ghost>().OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
+        ghosts = FindObjectsByType<Ghost>(FindObjectsSortMode.None).OrderBy(g => g.transform.GetSiblingIndex()).ToArray();
         
         if (pacman == null) {
-            pacman = FindObjectOfType<Pacman>();
+            pacman = FindFirstObjectByType<Pacman>();
         }
     }
 
