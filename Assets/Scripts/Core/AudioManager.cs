@@ -44,8 +44,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMunch()
     {
-        // Utilitzem PlayOneShot per permetre superposició ràpida si cal
-        if (munchClip != null && !sfxSource.isPlaying) // Evitem saturació si ja sona
+        // Only play munch sound if no other sound is currently playing
+        // This prevents the waka sound from overlapping with power pellet or other eating sounds
+        if (munchClip != null && !sfxSource.isPlaying)
         {
             sfxSource.PlayOneShot(munchClip);
         }
